@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Fragment } from 'react';
 import './App.css';
+import Header from './components/HeaderComponent';
+import Footer from './components/FooterComponent';
+import Home from './components/HomeComponent';
+import ZonesIndia from './components/ZonesIndiaComponent';
+import Precautions from './components/PrecautionsComponent';
+import Donate from './components/DonateComponent';
+import Helpline from './components/HelplineComponent';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container } from '@material-ui/core';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Router>
+        <Header />
+        <Container style={{ "min-height" : "75vh"}}>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route exact path="/zones" component={ZonesIndia} />
+            <Route exact path="/precautions" component={Precautions} />
+            <Route exact path="/donate" component={Donate} />
+          </Switch>
+        </Container>
+        <Helpline />
+        <Footer />
+      </Router>
+    </Fragment>
   );
 }
 
