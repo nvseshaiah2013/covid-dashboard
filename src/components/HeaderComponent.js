@@ -95,10 +95,10 @@ const Header = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Box display={{ xs: 'none', md: 'block' }}>
-                        <Typography variant="h5" style={{ "marginLeft": "5vw" }}> CovidoMeter </Typography>
+                        <Typography variant="h5" style={{ "marginLeft": "5vw" }}> CovidAnalytics </Typography>
                     </Box>
                     <Box display={{ xs: 'block', md: 'none' }}>
-                        <Typography variant="h5"> CovidoMeter </Typography>
+                        <Typography variant="h5"> CovidAnalytics </Typography>
                     </Box>
                     <Box display={{xs : 'none', sm : 'block'}} className={classes.navbar}>
                         <NavbarList />

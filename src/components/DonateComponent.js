@@ -66,7 +66,9 @@ const Donate = (props) =>{
                 <Box>
                     <img src="/images/pmcares.jpg" alt="PM CARES Details" className={classes.imageResponsive}/>
                 </Box>
-            <Button variant="contained" color="primary" > <a href="https://www.google.co.in" target="_blank"  rel="noopener noreferrer" className={classes.button}> Open PMCARES </a></Button>
+                <Box style={{"text-align": "center"}}>
+                    <Button style={{"background-color" : "green"}} variant="contained"> <a href="https://www.pmcares.gov.in" target="_blank"  rel="noopener noreferrer" className={classes.button}> Open PMCARES </a></Button>
+                </Box>
         </Container>
     );
 }

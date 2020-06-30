@@ -16,7 +16,7 @@ function App() {
     <Fragment>
       <Router>
         <Header />
-        <Container style={{ "min-height" : "75vh"}}>
+        <Container style={{ "minHeight" : "75vh"}}>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route exact path="/zones" component={ZonesIndia} />
