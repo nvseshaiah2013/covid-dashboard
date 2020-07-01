@@ -7,6 +7,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import { Trail } from 'react-spring/renderprops';
+import Loading from './LoadingComponent';
 
 const useStyles = makeStyles((theme) => ({
     listItem: {
@@ -65,9 +66,7 @@ const Updates = (props) => {
     }
     else
         return (
-            <Container maxWidth="sm">
-                asd
-            </Container>
+            <Loading />
         );
 }
 

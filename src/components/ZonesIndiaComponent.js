@@ -4,7 +4,9 @@ import { zones } from '../resources/useData';
 import useSWR from 'swr';
 import { ZONES_INDIA } from '../constants/urls';
 import { STATE_NAMES } from '../constants/constants';
-import { Trail } from 'react-spring/renderprops';
+import { Spring, animated } from 'react-spring/renderprops';
+import Loading from './LoadingComponent';
+
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     chips: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             margin: theme.spacing(0.5),
         },
-        fontSize: '1.5rem',
+        fontSize: '2rem',
     },
     hover: {
         '&:hover': {
@@ -45,6 +47,7 @@ const ZonesIndia = (props) => {
     const classes = useStyles();
     const { data } = useSWR(ZONES_INDIA, zones, { revalidateOnReconnect: true });
     const [selectedState, setSelectedState] = useState('AP');
+    
     if (data) {
         let states = groupStates(data.zones);
         let keys = Object.keys(states);
@@ -73,11 +76,11 @@ const ZonesIndia = (props) => {
                 <div className={classes.toolbar} />
                 <Typography align="center" variant="h4"> Zone Classification in India </Typography>
                 <div className={classes.toolbar} />
-                <div className={classes.chips}>
-                    <Trail items={statesList} keys={item=>item.key} from={{ opacity : 0 }} to={{ opacity : 1}}>
-                        {item => props => <div style={props}>{item}</div>}
-                    </Trail>
-                </div>
+                {/* <div> */}
+                    <Spring native from={{opacity : 0}} to={{ opacity : 1 }}>
+                        {props => <animated.div style={props} className={classes.chips}>{statesList}</animated.div>}
+                    </Spring>
+                {/* </div> */}
                 <div className={classes.toolbar} />
                 <DisplayZones state={states[selectedState]} />
             </Container>
@@ -85,7 +88,7 @@ const ZonesIndia = (props) => {
     }
     else
         return (
-            <div>Loading...</div>
+            <Loading />
         );
 }
 
@@ -96,7 +99,7 @@ const DisplayZones = ({ state }) => {
             return <Chip key={district.districtcode} style={{backgroundColor :"#0F0", color : "#000"}} label={district.district} className={classes.hover}/>
         }
         else if(district.zone === 'Orange'){
-            return <Chip key={district.districtcode} style={{backgroundColor :"#FF8C00"}} label={district.district} className={classes.hover}/>
+            return <Chip key={district.districtcode} style={{backgroundColor :"#FF8C00", color : "#000"}} label={district.district} className={classes.hover}/>
         }   
         else {
             return <Chip key={district.districtcode} style={{backgroundColor :"#F00"}} label={district.district} className={classes.hover}/>
