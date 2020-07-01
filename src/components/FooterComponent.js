@@ -6,7 +6,7 @@ import FreeBreakfastCoffee from '@material-ui/icons/FreeBreakfast';
 const useStyles = makeStyles((theme) => ({
     content: {
         height: '10vh',
-        backgroundColor : "lightblue",
+        backgroundColor : "primary",
         // color: 'white',
         marginTop: '5vh',
         // display : 'flex',

@@ -5,36 +5,48 @@ import PlaceIcon from '@material-ui/icons/Place';
 import AnnouncementIcon from '@material-ui/icons/Announcement';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
 import SecurityIcon from '@material-ui/icons/Security';
+import Home from '../components/HomeComponent';
+import Updates from '../components/UpdatesComponent';
+import Donate from '../components/DonateComponent';
+import Precautions from '../components/PrecautionsComponent';
+import ZonesIndia from '../components/ZonesIndiaComponent';
+import DayWiseGraph from '../components/DayWiseGraphComponent';
 
 export const list = [
     {
         value : 'Home',
         icon : <HomeIcon />,
-        url : '/'
+        url : '/',
+        component : Home 
     },
     {
         value : 'Day Wise Graph',
         icon : <TrendingUpIcon />,
-        url : '/day-graph'
+        url : '/day-graph',
+        component : DayWiseGraph
     },
     {
         value : 'Zones In India',
         icon : <PlaceIcon />,
-        url : '/zones'
+        url : '/zones',
+        component : ZonesIndia
     },
     {
-        value :'Announcements',
+        value :'Updates',
         icon : <AnnouncementIcon />,
-        url : '/announcements'
+        url : '/updates',
+        component : Updates
     },
     {
         value : 'Precautions',
         icon : <SecurityIcon />,
-        url : '/precautions'
+        url : '/precautions',
+        component : Precautions
     },
     {
         value : 'Donate',
         icon : <AttachMoneyIcon />,
-        url : '/donate'
+        url : '/donate',
+        component : Donate
     }
 ];

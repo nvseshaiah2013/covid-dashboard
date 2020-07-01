@@ -3,7 +3,7 @@ import { makeStyles, ListItemIcon } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
-import { list } from './sidenav';
+import { list } from '../resources/sidenav';
 import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({

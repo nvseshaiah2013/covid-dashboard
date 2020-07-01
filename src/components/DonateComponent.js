@@ -55,7 +55,7 @@ const Donate = (props) =>{
                    <span style={{"color" : "red"}}>
                       #Coronavirus 
                     </span> 
-                    <Button color="primary" variant="contained" className={classes.marginLeft}>
+                    <Button color="secondary" variant="contained" className={classes.marginLeft}>
                         <a href="https://www.mygov.in/group-issue/share-your-ideas-suggestions-help-fight-coronavirus/" target="_blank" rel="noopener noreferrer" className={classes.button}> Give Idea </a>
                     </Button>
                 </Typography>
@@ -66,8 +66,8 @@ const Donate = (props) =>{
                 <Box>
                     <img src="/images/pmcares.jpg" alt="PM CARES Details" className={classes.imageResponsive}/>
                 </Box>
-                <Box style={{"text-align": "center"}}>
-                    <Button style={{"background-color" : "green"}} variant="contained"> <a href="https://www.pmcares.gov.in" target="_blank"  rel="noopener noreferrer" className={classes.button}> Open PMCARES </a></Button>
+                <Box style={{"textAlign": "center"}}>
+                    <Button style={{"backgroundColor":"#4caf50"}} variant="contained"> <a href="https://www.pmcares.gov.in" target="_blank"  rel="noopener noreferrer" className={classes.button}> Open PMCARES </a></Button>
                 </Box>
         </Container>
     );

@@ -2,13 +2,10 @@ import React, { Fragment } from 'react';
 import './App.css';
 import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
-import Home from './components/HomeComponent';
-import ZonesIndia from './components/ZonesIndiaComponent';
-import Precautions from './components/PrecautionsComponent';
-import Donate from './components/DonateComponent';
 import Helpline from './components/HelplineComponent';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
+import { list } from './resources/sidenav';
 
 
 function App() {
@@ -18,10 +15,11 @@ function App() {
         <Header />
         <Container style={{ "minHeight" : "75vh"}}>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route exact path="/zones" component={ZonesIndia} />
-            <Route exact path="/precautions" component={Precautions} />
-            <Route exact path="/donate" component={Donate} />
+            {
+              list.map((element) => {
+                return (<Route key={element.url} exact path={element.url} component={element.component}/>);
+              })
+            }
           </Switch>
         </Container>
         <Helpline />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Typography, makeStyles, Box, Chip, List, ListItem, ListItemText } from '@material-ui/core';
+import { Container, Typography, makeStyles, Box, Chip, ListItem, ListItemText } from '@material-ui/core';
 import { symptoms, precautions } from '../resources/symptoms';
+import { Trail } from 'react-spring/renderprops';
 const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: '3vh'
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     hover: {
         '&:hover': {
-            backgroundColor: 'lightgreen',
+            backgroundColor: '#2290A0',
             transform: 'translateY(-1px)'
         }
     },
@@ -33,9 +34,47 @@ const useStyles = makeStyles((theme) => ({
 const Precautions = (props) => {
     const classes = useStyles();
     const [selected, setSelected] = useState(0);
+    let precautionsList = precautions.map((precaution, index) => {
+        return (
+            <ListItem key={precaution.id}>
+                <ListItemText
+                    primary={
+                        <React.Fragment>
+                            <Typography variant="h5" color="primary">
+                                {precaution.heading}
+                            </Typography>
+                        </React.Fragment>
+                    }
+                    secondary={
+                        <React.Fragment>
+                            <Typography
+                                component="span"
+                                variant="body1"
+                                className={classes.inline}
+                                color="textSecondary"
+                            >
+                                {precaution.description}
+                            </Typography>
+
+                        </React.Fragment>
+                    }
+                />
+            </ListItem>
+        );
+    });
     return (
         <Box textAlign="center">
             <Container maxWidth="md" className={classes.root}>
+                <div className={classes.toolbar} />
+                <Typography variant="h4">
+                    <span className={classes.leftBorder} />
+                        Precautions of Coronavirus
+                </Typography>
+                <Container maxWidth="md">
+                    <Trail items={precautionsList} keys={item => item.key} from={{ opacity : 0 }} to={{ opacity : 1}}>
+                        {item => props => <div style={props}>{item}</div>}
+                    </Trail>
+                </Container>
                 <Typography variant="h4">
                     <span className={classes.leftBorder} />
                         Symptoms Of Coronavirus
@@ -58,43 +97,6 @@ const Precautions = (props) => {
                 </div>
                 <div className={classes.toolbar} />
                 <Description selected={selected} />
-                <div className={classes.toolbar} />
-                <Typography variant="h4">
-                    <span className={classes.leftBorder} />
-                        Precautions of Coronavirus
-                </Typography>
-                <Container maxWidth="md">
-                    <List>
-                        {precautions.map((precaution, index) => {
-                            return (
-                                <ListItem key={precaution.id}>
-                                    <ListItemText
-                                        primary={
-                                            <React.Fragment>
-                                                <Typography variant="h5" color="primary">
-                                                    {precaution.heading}
-                                                </Typography>
-                                            </React.Fragment>
-                                        }
-                                        secondary={
-                                            <React.Fragment>
-                                                <Typography
-                                                    component="span"
-                                                    variant="body1"
-                                                    className={classes.inline}
-                                                    color="textSecondary"
-                                                >
-                                                    {precaution.description}
-                                                </Typography>
-
-                                            </React.Fragment>
-                                        }
-                                    />
-                                </ListItem>
-                            );
-                        })}
-                    </List>
-                </Container>
             </Container>
         </Box>
     );
@@ -103,12 +105,12 @@ const Precautions = (props) => {
 const Description = ({ selected }) => {
     return (
         <Container maxWidth="sm">
-        
-                {symptoms[selected].description.split('.').map((description, index) => {
-                    return (
-                        <Typography key={index} variant="body1" color="textSecondary">{description} </Typography>
-                    );
-                })}
+
+            {symptoms[selected].description.split('.').map((description, index) => {
+                return (
+                    <Typography key={index} variant="body1" color="textSecondary">{description} </Typography>
+                );
+            })}
 
         </Container>
     );

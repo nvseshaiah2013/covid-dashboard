@@ -15,7 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import NavbarList from './NavbarList';
-import { list } from './sidenav';
+import { list } from '../resources/sidenav';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -47,14 +48,18 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
-        width: drawerWidth,
+        width: drawerWidth
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3)
     },
-    navbar : {
-        marginLeft : 'auto'
+    navbar: {
+        marginLeft: 'auto'
+    },
+    navLink : {
+        textDecoration : 'none',
+        color : 'gray'
     }
 }));
 
@@ -72,10 +77,12 @@ const Header = (props) => {
             <Divider />
             <List>
                 {list.map((item, index) => (
-                    <ListItem button key={item.value}>
-                        <ListItemIcon>{item.icon}</ListItemIcon>
-                        <ListItemText primary={item.value} />
-                    </ListItem>
+                    <NavLink to={item.url} key={item.value} className={classes.navLink} onClick={handleDrawerToggle}>
+                        <ListItem button>
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.value} />
+                        </ListItem>
+                    </NavLink>
                 ))}
             </List>
         </div>
@@ -83,7 +90,7 @@ const Header = (props) => {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="static" className={classes.appBar} color="primary">
+            <AppBar position="static" className={classes.appBar} color="inherit">
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -100,7 +107,7 @@ const Header = (props) => {
                     <Box display={{ xs: 'block', md: 'none' }}>
                         <Typography variant="h5"> CovidAnalytics </Typography>
                     </Box>
-                    <Box display={{xs : 'none', sm : 'block'}} className={classes.navbar}>
+                    <Box display={{ xs: 'none', sm: 'block' }} className={classes.navbar}>
                         <NavbarList />
                     </Box>
                 </Toolbar>
@@ -112,7 +119,7 @@ const Header = (props) => {
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
                     classes={{
-                        paper: classes.drawerPaper,
+                        paper: classes.drawerPaper
                     }}
                     ModalProps={{
                         keepMounted: true, // Better open performance on mobile.
