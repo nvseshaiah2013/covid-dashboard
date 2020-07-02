@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = (props) => {
     const classes = useStyles();
-    const { data: overview } = useSWR(COUNTRY_DATA, countryData, { refreshWhenOffline: true })
+    const { data: overview } = useSWR(COUNTRY_DATA, countryData, { revalidateOnReconnect: true })
     return (
         <Container maxWidth="md">
             <div className={classes.toolbar} />
