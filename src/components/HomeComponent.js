@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Typography, makeStyles, Table, TableHead, TableBody, TableCell, TableRow, TableSortLabel } from '@material-ui/core';
 import { COUNTRY_DATA } from '../constants/urls';
-// import { STATE_NAMES } from '../constants/constants';
 import { countryData } from '../resources/useData';
 import useSWR from 'swr';
 import Loading from './LoadingComponent';
@@ -84,9 +83,9 @@ const Home = (props) => {
             <div className={classes.toolbar} />
             <Typography variant="h4" align="center">
                 Overview Of Cases In India
-            <div className={classes.toolbar} />
-
             </Typography>
+            <Typography variant="subtitle2" align="center">{overview ? `Last Updated On : ${overview['cases_time_series'][overview['cases_time_series'].length - 1]['date']}` : ''}</Typography>
+                <div className={classes.toolbar} />
             {overview ? <ShowOverview data={overview['cases_time_series']} /> : <Loading />}
             <Typography variant="subtitle1" align="right" color="error"> *Includes Migrated/Foreign Cases</Typography>
             <Typography variant="h4" align="center">
@@ -139,13 +138,14 @@ const StateTable = ({ data }) => {
     const [orderBy, setOrderBy] = useState('state');
     const [order, setOrder] = useState('asc');
     const [type, setType ] = useState('string');
-    data = stableSort(data,getComparator(order,orderBy,type));
+    let totalRow = data.filter((row) => row['statecode'] === 'TT')[0];
+    data = stableSort(data.filter((row) => row['statecode'] !=='TT'),getComparator(order,orderBy,type));
     const tableData = data.map((state,index) => {
         return (
             <StateTableRow key={index} data={state} />
         );
     });
-    tableData.push(<StateTableRow key={90} data={data[0]} />);
+    tableData.push(<StateTableRow key={46} data={totalRow} />);
     const handleClick = (parameter,type) =>{
         if(parameter === orderBy){
             if(order ==='asc'){
@@ -193,7 +193,7 @@ const StateTable = ({ data }) => {
 const StateTableRow = ({ data }) => {
     // const classes = useStyles();
     return (
-        <TableRow>
+        <TableRow hover>
             <TableCell>{data.state}</TableCell>
             <TableCell>{data.confirmed}</TableCell>
             <TableCell>{parseInt(data.confirmed) - (parseInt(data.active) + parseInt(data.deaths))}</TableCell>
@@ -208,9 +208,9 @@ const headCells = [
     { id: 'state', dataType: 'string', label: 'State Name' },
     { id: 'confirmed', dataType : 'number', label: 'Confirmed' },
     { id: 'recovered', dataType : 'number', label: 'Recovered' },
-    { id: 'fatalities', dataType : 'number', label: 'Fatalities' },
+    { id: 'deaths', dataType : 'number', label: 'Fatalities' },
     { id: 'active', dataType : 'number', label: 'Active' },
-    { id: 'updated', dataType : 'date', label: 'Last Updated' }
+    { id: 'lastupdatedtime', dataType : 'date', label: 'Last Updated' }
 ];
 
 const descendingComparator = (a, b, orderBy, type) => {
