@@ -29,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
     tooltiptext: {
         color: 'white',
         textAlign: 'left',
-        padding: '5px 0',
+        padding: '5px 2px',
     },
     span: {
         width: '1rem',
         height: '1rem',
-        display: 'block'
+        paddingLeft : '10px',
+        display: 'inline-block',
     }
 }));
 

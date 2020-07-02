@@ -20,9 +20,9 @@ export const list = [
         component : Home 
     },
     {
-        value : 'Day Wise Graph',
+        value : 'Statistics',
         icon : <TrendingUpIcon />,
-        url : '/day-graph',
+        url : '/statistics',
         component : DayWiseGraph
     },
     {
