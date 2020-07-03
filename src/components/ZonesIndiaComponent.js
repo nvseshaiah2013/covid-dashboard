@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Typography, makeStyles, Chip, Avatar } from '@material-ui/core';
+import { Container, Typography,  Chip, Avatar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { zones } from '../resources/useData';
 import useSWR from 'swr';
 import { ZONES_INDIA } from '../constants/urls';

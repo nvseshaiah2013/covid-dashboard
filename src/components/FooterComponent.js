@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Container, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FreeBreakfastCoffee from '@material-ui/icons/FreeBreakfast';
 

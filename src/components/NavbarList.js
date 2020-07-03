@@ -1,8 +1,6 @@
 import React from 'react';
-import { makeStyles, ListItemIcon } from '@material-ui/core';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
+import { ListItemIcon, ListItem, List, ListItemText } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { list } from '../resources/sidenav';
 import { NavLink } from 'react-router-dom';
 

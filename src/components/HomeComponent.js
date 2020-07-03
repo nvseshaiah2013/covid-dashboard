@@ -1,5 +1,5 @@
 import {
-    Container, Grid, makeStyles, Table, TableBody, TableCell,
+    Container, Grid, Table, TableBody, TableCell,
     TableHead, TableRow, TableSortLabel, Typography, Tooltip, TableContainer, IconButton
 } from '@material-ui/core';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
@@ -12,7 +12,7 @@ import Loading from './LoadingComponent';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-
+import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
 
 const useStyles = makeStyles((theme) => ({
@@ -121,7 +121,7 @@ const Home = (props) => {
             <Typography variant="subtitle2" align="center">{overview ? `Last Updated On : ${findLastUpdatedTime(overview['statewise'])}` : ''}</Typography>
             <div className={classes.toolbar} />
             {overview ? <ShowOverview data={overview} /> : <Loading />}
-            <Typography variant="subtitle1" align="right" color="error"> *Includes Migrated/Foreign Cases</Typography>
+            <Typography variant="subtitle1" align="right" color="error"> *Excludes Migrated/Foreign Cases</Typography>
             <Typography variant="h4" align="center">
                 <div className={classes.toolbar} />
                 Overview Of Cases - State Wise

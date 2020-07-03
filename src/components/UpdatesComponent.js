@@ -1,13 +1,13 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import { UPDATES } from '../constants/urls';
 import useSWR from 'swr';
 import { updates } from '../resources/useData';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import { Trail } from 'react-spring/renderprops';
 import Loading from './LoadingComponent';
+
+import { Container, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     listItem: {

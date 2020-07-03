@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Typography, makeStyles, Box, Chip, ListItem, ListItemText } from '@material-ui/core';
+import { Container, Typography, Box, Chip, ListItem, ListItemText } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { symptoms, precautions } from '../resources/symptoms';
 import { Trail } from 'react-spring/renderprops';
 const useStyles = makeStyles((theme) => ({

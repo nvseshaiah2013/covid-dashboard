@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Container,  Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { Bar, Pie } from 'react-chartjs-2';
 import { COUNTRY_DATA } from '../constants/urls';
 import { countryData } from '../resources/useData';

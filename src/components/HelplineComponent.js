@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Box, makeStyles, Typography } from '@material-ui/core';
+import { Container, Box, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root : {

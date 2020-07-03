@@ -1,19 +1,21 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import {
+    Box,
+    CssBaseline,
+    AppBar,
+    IconButton,
+    Toolbar,
+    Divider,
+    Drawer,
+    Hidden,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Typography,
+} from '@material-ui/core';
 import NavbarList from './NavbarList';
 import { list } from '../resources/sidenav';
 import { NavLink } from 'react-router-dom';
