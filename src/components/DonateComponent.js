@@ -64,7 +64,7 @@ const Donate = (props) =>{
                     For More Details Visit the PMCARES website.
                 </Typography>
                 <Box>
-                    <img src="images/pmcares.jpg" alt="PM CARES Details" className={classes.imageResponsive}/>
+                    <img src="/covid-dashboard/images/pmcares.jpg" alt="PM CARES Details" className={classes.imageResponsive}/>
                 </Box>
                 <Box style={{"textAlign": "center"}}>
                     <Button style={{"backgroundColor":"#4caf50"}} variant="contained"> <a href="https://www.pmcares.gov.in" target="_blank"  rel="noopener noreferrer" className={classes.button}> Open PMCARES </a></Button>

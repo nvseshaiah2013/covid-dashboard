@@ -16,37 +16,37 @@ export const list = [
     {
         value : 'Home',
         icon : <HomeIcon />,
-        url : '/',
+        url : '/covid-dashboard',
         component : Home 
     },
     {
         value : 'Statistics',
         icon : <TrendingUpIcon />,
-        url : '/statistics',
+        url : '/covid-dashboard/statistics',
         component : DayWiseGraph
     },
     {
         value : 'Zones In India',
         icon : <PlaceIcon />,
-        url : '/zones',
+        url : '/covid-dashboard/zones',
         component : ZonesIndia
     },
     {
         value :'Updates',
         icon : <AnnouncementIcon />,
-        url : '/updates',
+        url : '/covid-dashboard/updates',
         component : Updates
     },
     {
         value : 'Precautions',
         icon : <SecurityIcon />,
-        url : '/precautions',
+        url : '/covid-dashboard/precautions',
         component : Precautions
     },
     {
         value : 'Donate',
         icon : <AttachMoneyIcon />,
-        url : '/donate',
+        url : '/covid-dashboard/donate',
         component : Donate
     }
 ];
