@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container,  Typography } from '@material-ui/core';
+import { Container, Typography, Button, ButtonGroup } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Bar, Pie } from 'react-chartjs-2';
 import { COUNTRY_DATA } from '../constants/urls';
@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     tooltip: {
         position: 'relative',
-        width : 'fit-content',
-        backgroundColor : 'black',
+        width: 'fit-content',
+        backgroundColor: 'black',
         '&::after': {
             content: '" "',
             position: 'absolute',
@@ -35,8 +35,12 @@ const useStyles = makeStyles((theme) => ({
     span: {
         width: '1rem',
         height: '1rem',
-        paddingLeft : '10px',
+        paddingLeft: '10px',
         display: 'inline-block',
+    },
+    button: {
+        fontSize: '0.7rem',
+        padding : '2px'
     }
 }));
 
@@ -79,12 +83,14 @@ const DayWiseGraph = () => {
 }
 
 const ShowChart = ({ data, parameter, label, backgroundColor, borderColor }) => {
+    const classes = useStyles();
+    let [startDate, setStartDate] = useState(moment('02-03-2020', 'DD-MM-YYYY'));
     let chartData = {
-        labels: data.map((day) => day['date']),
+        labels: data.filter((day) => moment(day['date'], 'DD MMM ').isAfter(startDate)).map((day) => day['date']),
         datasets: [
             {
                 label: label,
-                data: data.map((day) => day[parameter]),
+                data: data.filter((day) => moment(day['date'], 'DD MMM ').isAfter(startDate)).map((day) => day[parameter]),
                 backgroundColor: data.map((day) => backgroundColor),
                 borderColor: data.map((day) => borderColor),
                 borderWidth: 1,
@@ -93,7 +99,21 @@ const ShowChart = ({ data, parameter, label, backgroundColor, borderColor }) => 
             }
         ]
     };
-    return (<Bar data={chartData} width={100} height={50} options={{ maintainAspectRatio: true }} />);
+    return (
+        <Container>
+            <Bar data={chartData} width={100} height={50} options={{ maintainAspectRatio: true, responsive : true  }} />
+            
+                <ButtonGroup size="small" aria-label="Statistics Filter Buttons" variant="outlined" fullWidth={true} style={{marginTop : '1rem'}}>
+
+                    <Button color="primary" variant="outlined" className={classes.button} onClick={() => setStartDate(moment('02-03-2020', 'DD-MM-YYYY'))}> Beginning </Button>
+               
+                    <Button color="secondary" variant="outlined" className={classes.button} onClick={() => setStartDate(moment().subtract(1, 'month'))}>Past Month</Button>
+                
+                    <Button style={{ color: 'white' }} variant="outlined" className={classes.button} onClick={() => setStartDate(moment().subtract(2, 'weeks'))}> Past Week </Button>
+                </ButtonGroup>
+                            
+        </Container>
+    );
 }
 
 const ShowPieChart = ({ data, labels }) => {
@@ -131,7 +151,7 @@ const ShowPieChart = ({ data, labels }) => {
             percent: percent, value: value
         });
         setOpen(true);
-        setTimeout(()=>setOpen(false),2000);
+        setTimeout(() => setOpen(false), 2000);
     }
     return (
         <Container maxWidth="sm">
@@ -161,7 +181,7 @@ const ShowPieChart = ({ data, labels }) => {
                 }
             }} />
             <div hidden={!open} className={classes.tooltip} style={{ top: tooltip.top, left: tooltip.left }}>
-                
+
                 <p className={classes.tooltiptext}> <span className={classes.span} style={{ backgroundColor: tooltip.color }}></span>{tooltip.label}</p>
                 <p className={classes.tooltiptext}> Percentage : {parseFloat(tooltip.percent).toFixed(2)} % Cases </p>
                 <p className={classes.tooltiptext}> Cases : {tooltip.value}</p>
