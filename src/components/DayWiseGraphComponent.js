@@ -85,6 +85,9 @@ const DayWiseGraph = () => {
 const ShowChart = ({ data, parameter, label, backgroundColor, borderColor }) => {
     const classes = useStyles();
     let [startDate, setStartDate] = useState(moment('02-03-2020', 'DD-MM-YYYY'));
+    let max = data.reduce((acc,curval)=> parseInt(curval[parameter]) > parseInt(acc[parameter]) ? curval : acc );
+    let stepSize = (parseInt(max[parameter])/4).toFixed(0);
+    max = (parseInt(max[parameter])*1.10).toFixed(0);
     let chartData = {
         labels: data.filter((day) => moment(day['date'], 'DD MMM ').isAfter(startDate)).map((day) => day['date']),
         datasets: [
@@ -101,7 +104,7 @@ const ShowChart = ({ data, parameter, label, backgroundColor, borderColor }) => 
     };
     return (
         <Container>
-            <Bar data={chartData} width={100} height={50} options={{ maintainAspectRatio: true, responsive : true  }} />
+            <Bar data={chartData} width={100} height={50} options={{ maintainAspectRatio: true, responsive : true, scales : { yAxes : [ { display : true ,ticks : { display : true, min : 0, max : parseInt(max), stepSize: parseInt(stepSize) }}]} }} />
             
                 <ButtonGroup size="small" aria-label="Statistics Filter Buttons" variant="outlined" fullWidth={true} style={{marginTop : '1rem'}}>
 
