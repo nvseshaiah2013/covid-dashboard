@@ -112,7 +112,7 @@ const ShowChart = ({ data, parameter, label, backgroundColor, borderColor }) => 
                
                     <Button color="secondary" variant="outlined" className={classes.button} onClick={() => setStartDate(moment().subtract(1, 'month'))}>Past Month</Button>
                 
-                    <Button style={{ color: 'white' }} variant="outlined" className={classes.button} onClick={() => setStartDate(moment().subtract(2, 'weeks'))}> Past Week </Button>
+                    <Button style={{ color: 'white' }} variant="outlined" className={classes.button} onClick={() => setStartDate(moment().subtract(2, 'weeks'))}> Past 2 Weeks </Button>
                 </ButtonGroup>
                             
         </Container>

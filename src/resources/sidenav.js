@@ -11,42 +11,56 @@ import Donate from '../components/DonateComponent';
 import Precautions from '../components/PrecautionsComponent';
 import ZonesIndia from '../components/ZonesIndiaComponent';
 import DayWiseGraph from '../components/DayWiseGraphComponent';
+import StateGraph from '../components/StateGraph';
 
 export const list = [
     {
         value : 'Home',
         icon : <HomeIcon />,
         url : '/covid-dashboard',
-        component : Home 
+        component : Home,
+        show : true,
     },
     {
         value : 'Statistics',
         icon : <TrendingUpIcon />,
         url : '/covid-dashboard/statistics',
-        component : DayWiseGraph
+        component : DayWiseGraph,
+        show : true,
     },
     {
         value : 'Zones In India',
         icon : <PlaceIcon />,
         url : '/covid-dashboard/zones',
-        component : ZonesIndia
+        component : ZonesIndia,
+        show : true,
     },
     {
         value :'Updates',
         icon : <AnnouncementIcon />,
         url : '/covid-dashboard/updates',
-        component : Updates
+        component : Updates,
+        show : true,
     },
     {
         value : 'Precautions',
         icon : <SecurityIcon />,
         url : '/covid-dashboard/precautions',
-        component : Precautions
+        component : Precautions,
+        show : true,
     },
     {
         value : 'Donate',
         icon : <AttachMoneyIcon />,
         url : '/covid-dashboard/donate',
-        component : Donate
+        component : Donate,
+        show : true,
+    },
+    {
+        value : 'State',
+        icon : '',
+        url : '/covid-dashboard/state/:statecode',
+        component : StateGraph,
+        show : false,
     }
 ];

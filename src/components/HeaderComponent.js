@@ -78,7 +78,7 @@ const Header = (props) => {
         <div>
             <Divider />
             <List>
-                {list.map((item, index) => (
+                {list.filter((item)=> item.show === true ).map((item, index) => (
                     <NavLink to={item.url} key={item.value} className={classes.navLink} onClick={handleDrawerToggle}>
                         <ListItem button>
                             <ListItemIcon>{item.icon}</ListItemIcon>

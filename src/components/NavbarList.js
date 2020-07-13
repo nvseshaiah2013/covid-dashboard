@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavbarList = (props) => {
     const classes = useStyles();
-    const navlist = list.map((item,index) =>{
+    const navlist = list.filter((item) => item.show === true ).map((item,index) =>{
         return (
             <NavLink exact to={item.url} key={item.url} className={classes.navLink} activeClassName={classes.activeNavLink}>
                 <ListItem button key={item.value} disableGutters className={classes.listItem}>

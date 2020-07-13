@@ -14,6 +14,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
+import  { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -94,6 +95,9 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft : 0,
         paddingBottom : 0,
         marginBottom : 0
+    },
+    link : {
+        color : 'white'
     },
     toolbar: theme.mixins.toolbar
 }));
@@ -270,7 +274,10 @@ const StateTableRow = ({ index, data }) => {
     const classes = useStyles();
     return (
         <TableRow hover key={index}>
-            <TableCell className={classes.tableCell} style={{ "width": "20% !important" }}>{data.state}
+            <TableCell className={classes.tableCell} style={{ "width": "20% !important" }}>
+                { data.statecode !=='TT'? <Link to={"/covid-dashboard/state/" + data.statecode} className={classes.link}>
+                 {data.state}
+                </Link> : data.state } 
                 {data.statenotes.length > 0 ?
 
                     <Tooltip placement="bottom" title={
