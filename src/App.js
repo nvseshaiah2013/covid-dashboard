@@ -6,12 +6,14 @@ import Helpline from './components/HelplineComponent';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import { list } from './resources/sidenav';
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
   return (
     <Fragment>
       <Router>
+        <ScrollToTop />
         <Header />
         <Container style={{ "minHeight" : "75vh"}}>
           <Switch>

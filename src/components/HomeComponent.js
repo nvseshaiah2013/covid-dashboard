@@ -86,16 +86,6 @@ const useStyles = makeStyles((theme) => ({
     table: {
         overflowX: 'scroll',
     },
-    tableCell: {
-        paddingRight: '2px',
-        paddingLeft: '0px'
-    },
-    tableCellHeading : {
-        paddingRight : 0,
-        paddingLeft : 0,
-        paddingBottom : 0,
-        marginBottom : 0
-    },
     link : {
         color : 'white'
     },
@@ -243,12 +233,11 @@ const StateTable = ({ data }) => {
                                         align={headCell.numeric ? 'right' : 'left'}
                                         sortDirection={orderBy === headCell.id ? order : false}
                                         onClick={() => handleClick(headCell.id, headCell.dataType)}
-                                        className={classes.tableCellHeading}
                                     >
                                         <Tooltip placement="top" arrow title={headCell.label} enterTouchDelay={100}>
                                             <IconButton aria-label="Table Cell Information" >
                                                 <Typography display="block" variant="caption">
-                                                    {headCell.label.substr(0, 1)}
+                                                    {headCell.label}
                                                 </Typography>
                                             </IconButton>
                                         </Tooltip>
@@ -274,7 +263,7 @@ const StateTableRow = ({ index, data }) => {
     const classes = useStyles();
     return (
         <TableRow hover key={index}>
-            <TableCell className={classes.tableCell} style={{ "width": "20% !important" }}>
+            <TableCell>
                 { data.statecode !=='TT'? <Link to={"/covid-dashboard/state/" + data.statecode} className={classes.link}>
                  {data.state}
                 </Link> : data.state } 
@@ -342,12 +331,12 @@ const StateTableRow = ({ index, data }) => {
 }
 
 const headCells = [
-    { id: 'state', dataType: 'string', label: 'State' },
-    { id: 'confirmed', dataType: 'number', label: 'Confirm' },
+    { id: 'state', dataType: 'string', label: 'State Name' },
+    { id: 'confirmed', dataType: 'number', label: 'Confirmed' },
     { id: 'migratedother', dataType: 'number', label: 'Migrated' },
     { id: 'active', dataType: 'number', label: 'Active' },
-    { id: 'deaths', dataType: 'number', label: 'Deaths' },
-    { id: 'recovered', dataType: 'number', label: 'Cured' }
+    { id: 'deaths', dataType: 'number', label: 'Deceased' },
+    { id: 'recovered', dataType: 'number', label: 'Recovered' }
     // { id: 'lastupdatedtime', dataType : 'date', label: 'Last Update' }
 ];
 
