@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Table, TableRow, TableBody, TableCell, TableHead, TableContainer, ButtonGroup, Button, Tooltip, IconButton, TableSortLabel } from '@material-ui/core';
+import { Container, Typography, Table, TableRow, TableBody, TableCell, TableHead, Box, TableContainer, ButtonGroup, Button, Tooltip, IconButton, TableSortLabel } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import useSWR from 'swr';
 import { STATE_NAMES } from '../constants/constants';
@@ -7,6 +7,8 @@ import { STATES_TOTAL, STATES_DAILY } from '../constants/urls';
 import { statesTotal, statesDaily } from '../resources/useData';
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment';
+import { Redirect } from 'react-router-dom';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,18 +74,29 @@ const StateGraph = ({ match }) => {
     const [p_daily_data, setPDailyData] = useState([]);
     const [p_total_data, setPTotalData] = useState([]);
     useEffect(() => {
-        let temp = processDailyData(daily_data, match.params.statecode);
+        let code = typeof STATE_NAMES[match.params.statecode] !== 'undefined' ? match.params.statecode : 'UN';
+        let temp = processDailyData(daily_data, code );
         setPDailyData(temp);
     }, [daily_data, match.params.statecode]);
-
+    
     useEffect(() => {
-        let temp = processTotalData(total_data, match.params.statecode);
+        let code = typeof STATE_NAMES[match.params.statecode] !== 'undefined' ? match.params.statecode : 'UN';
+        let temp = processTotalData(total_data,  code );
         setPTotalData(temp);
     }, [total_data, match.params.statecode])
+    if(typeof STATE_NAMES[match.params.statecode] === 'undefined')
+    {
+        return (<Redirect to='/covid-dashboard'/>);
+    }
     return (
         <Container maxWidth="md" className={classes.root}>
             <Typography align="center" variant="h5">{STATE_NAMES[match.params.statecode]}</Typography>
             <div className={classes.toolbar} />
+            <Box display={{ xs: 'block', sm: 'none' }}>
+                <Typography variant="caption" align="right" display="block">
+                    Scroll to View More <ArrowForwardIcon fontSize="small" elementType="span" />
+                </Typography> 
+            </Box>
             {p_total_data.length !== 0 ? <StateTable data={p_total_data} /> : ''}
             <div className={classes.toolbar} />
 
@@ -205,7 +218,7 @@ const ShowChart = ({ data, color, label }) => {
     const classes = useStyles();
     let [startDate, setStartDate] = useState(moment('02-03-2020', 'DD-MM-YYYY'));
     let max = data.reduce((acc, curval) => parseInt(curval['count']) > parseInt(acc['count']) ? curval : acc);
-    let stepSize = (parseInt(max['count']) / 4).toFixed(0);
+    let stepSize = (parseInt(max['count']) *0.25 ).toFixed(0);
     max = (parseInt(max['count']) * 1.10).toFixed(0);
     let chartData = {
         labels: data.filter((day) => moment(day['date'], 'DD-MMM-YY').isAfter(startDate)).map((day) => day['date']),

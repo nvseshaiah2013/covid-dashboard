@@ -1,6 +1,6 @@
 import {
     Container, Grid, Table, TableBody, TableCell,
-    TableHead, TableRow, TableSortLabel, Typography, Tooltip, TableContainer, IconButton
+    TableHead, TableRow, TableSortLabel, Typography, Tooltip, TableContainer, IconButton, Box
 } from '@material-ui/core';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import moment from 'moment';
@@ -15,6 +15,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
 import  { Link } from 'react-router-dom';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -121,6 +122,11 @@ const Home = (props) => {
                 Overview Of Cases - State Wise
             <div className={classes.toolbar} />
             </Typography>
+            <Box display={{ xs: 'block', sm: 'none' }}>
+                <Typography variant="caption" align="right" display="block">
+                    Scroll to View More <ArrowForwardIcon fontSize="small" elementType="span" />
+                </Typography> 
+            </Box>
             {overview ? <StateTable data={overview['statewise']} /> : <Loading />}
         </Container>
     );
@@ -264,7 +270,7 @@ const StateTableRow = ({ index, data }) => {
     return (
         <TableRow hover key={index}>
             <TableCell>
-                { data.statecode !=='TT'? <Link to={"/covid-dashboard/state/" + data.statecode} className={classes.link}>
+                { data.statecode !=='TT' && parseInt(data.confirmed) !== 0? <Link to={"/covid-dashboard/state/" + data.statecode} className={classes.link}>
                  {data.state}
                 </Link> : data.state } 
                 {data.statenotes.length > 0 ?
