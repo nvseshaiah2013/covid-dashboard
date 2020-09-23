@@ -216,7 +216,7 @@ const StateTable = (data) => {
 
 const ShowChart = ({ data, color, label }) => {
     const classes = useStyles();
-    let [startDate, setStartDate] = useState(moment('02-03-2020', 'DD-MM-YYYY'));
+    let [startDate, setStartDate] = useState(moment('31-03-2020', 'DD-MM-YYYY'));
     let max = data.reduce((acc, curval) => parseInt(curval['count']) > parseInt(acc['count']) ? curval : acc);
     let stepSize = (parseInt(max['count']) *0.25 ).toFixed(0);
     max = (parseInt(max['count']) * 1.10).toFixed(0);

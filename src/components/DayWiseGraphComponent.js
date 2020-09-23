@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
             borderWidth: '5px',
             borderStyle: 'solid',
             borderColor: 'black transparent transparent transparent'
-        }
+        },
+        zIndex : 2000
     },
     tooltiptext: {
         color: 'white',
@@ -84,7 +85,7 @@ const DayWiseGraph = () => {
 
 const ShowChart = ({ data, parameter, label, backgroundColor, borderColor }) => {
     const classes = useStyles();
-    let [startDate, setStartDate] = useState(moment('02-03-2020', 'DD-MM-YYYY'));
+    let [startDate, setStartDate] = useState(moment('31-03-2020', 'DD-MM-YYYY'));
     let max = data.reduce((acc,curval)=> parseInt(curval[parameter]) > parseInt(acc[parameter]) ? curval : acc );
     let stepSize = (parseInt(max[parameter])/4).toFixed(0);
     max = (parseInt(max[parameter])*1.10).toFixed(0);
@@ -183,7 +184,7 @@ const ShowPieChart = ({ data, labels }) => {
                     }
                 }
             }} />
-            <div hidden={!open} className={classes.tooltip} style={{ top: tooltip.top, left: tooltip.left }}>
+            <div className={classes.tooltip} style={{ top: tooltip.top, left: tooltip.left, visibility : open ? 'visible' : 'hidden' }}>
 
                 <p className={classes.tooltiptext}> <span className={classes.span} style={{ backgroundColor: tooltip.color }}></span>{tooltip.label}</p>
                 <p className={classes.tooltiptext}> Percentage : {parseFloat(tooltip.percent).toFixed(2)} % Cases </p>
