@@ -16,6 +16,8 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <meta name="theme-color" content="#000">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="black">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -30,6 +32,21 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script type="text/javascript">
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('%PUBLIC_URL%/service-worker.js').then(function(registration) {
+            console.log('Worker registration successful', registration.scope);
+          }, function(err) {
+            console.log('Worker registration failed', err);
+          }).catch(function(err) {
+            console.log(err);
+          });
+        });
+      } else {
+        console.log('Service Worker is not supported by browser.');
+      }
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
