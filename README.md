@@ -2,7 +2,7 @@
 
 This project gives you an overview of the daily Covid-19 Cases being reported in India.  
 
-![Overview Page](https://nvseshaiah2013.github.io/covid-dashboard/screenshots/overview.png)
+![Overview Page](https://github.com/nvseshaiah2013/covid-dashboard/public/images/screenshots/overview.png)
 
 
 
